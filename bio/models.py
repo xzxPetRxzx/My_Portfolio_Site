@@ -9,7 +9,7 @@ class Person(models.Model):
 
     def __str__(self):
         return self.full_name
-'''
+
 # Места обучения
 class Education(models.Model):
     person = models.ForeignKey(on_delete=models.CASCADE, related_name='education_places')
@@ -29,4 +29,3 @@ class Job(models.Model):
         if self.started_at:
             self.started_at = self.started_at.replace(day=1)
 
-'''
