@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <article>
+        <h1>{{ post.title }}</h1>
+        <p><strong>Дата создания:</strong> {{ post.created_at }}</p>
+        <p><strong>Дата обновления:</strong> {{ post.updated_at }}</p>
+        <div>
+            {{ post.content|safe }}
+        </div>
+    </article>
+
+    <section id="comments">
+        <h2>Комментарии</h2>
+        <ul>
+            {% for comment in post.comments.all %}
+                <li>
+                    <p><strong>{{ comment.author }}</strong> ({{ comment.created_at|date:"d M Y H:i" }})</p>
+                    <p>{{ comment.content }}</p>
+                </li>
+            {% empty %}
+                <p>Комментариев нет.</p>
+            {% endfor %}
+        </ul>
+
+        <h3>Оставить комментарий</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Отправить комментарий</button>
+        </form>
+    </section>
+
+    <a href="{% url 'post_list' %}">Назад к списку постов</a>
+{% endblock %}

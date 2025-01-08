@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ project.title }}</h1>
+    <p><strong>Описание:</strong> {{ project.description }}</p>
+    <p><strong>Технологии:</strong> {{ project.technologies }}</p>
+    <p><strong>Завершено:</strong> {{ project.completed_on }}</p>
+
+    {% if project.github_url %}
+        <p><strong>GitHub:</strong> <a href="{{ project.github_url }}" target="_blank">Ссылка на репозиторий</a></p>
+    {% endif %}
+
+    {% if project.website_url %}
+        <p><strong>Сайт:</strong> <a href="{{ project.website_url }}" target="_blank">Перейти на сайт</a></p>
+    {% endif %}
+
+    {% if project.image %}
+        <h3>Изображение проекта</h3>
+        <img src="{{ project.image.url }}" alt="{{ project.title }}" width="400">
+    {% endif %}
+
+    {% if project.video_url %}
+        <h3>Видео проекта</h3>
+        <iframe width="560" height="315" src="{{ project.video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    {% endif %}
+{% endblock %}

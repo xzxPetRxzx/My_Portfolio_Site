@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Портфолио{% endblock %}
+
+{% block content %}
+    <h1>Мое Портфолио</h1>
+    <ul>
+        {% for project in projects %}
+            <li>
+                <a href="{% url 'portfolio_detail' slug=project.slug %}">{{ project.title }}</a>
+                <p>{{ project.short_description }}</p>
+                <p><strong>Технологии:</strong> {{ project.technologies }}</p>
+                {% if project.image %}
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}" width="200">
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

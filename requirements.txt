@@ -1,0 +1,5 @@
+Django~=5.1.4
+psycopg2
+Pillow   # Библиотека для работы с изображениями
+django-crispy-forms  # Для удобных форм с HTML-стилями
+django-debug-toolbar  # Для отладки во время разработки (не для продакшн)
