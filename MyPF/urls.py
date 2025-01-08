@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('portfolio/', include('portfolio.urls')),  # Портфолио
     path('blog/', include('blog.urls')),  # Блог
-    # path('', include('blog.urls')),  # Главная страница, сделать
+    # path('', TemplateView.as_view('index.html')),  # Главная страница, сделать
 ]
 
 if settings.DEBUG:  # Это добавляется только в режиме разработки
