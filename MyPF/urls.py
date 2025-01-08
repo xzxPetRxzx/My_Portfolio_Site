@@ -20,10 +20,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('', include('bio.urls')), # приложение для личной страницы
     path('admin/', admin.site.urls),
     path('portfolio/', include('portfolio.urls')),  # Портфолио
     path('blog/', include('blog.urls')),  # Блог
-    # path('', TemplateView.as_view('index.html')),  # Главная страница, сделать
+
 ]
 
 if settings.DEBUG:  # Это добавляется только в режиме разработки

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Личная страница - {{ personal_page.full_name }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ personal_page.full_name }}</h1>
+        <div class="profile">
+            {% if personal_page.photo %}
+                <img src="{{ personal_page.photo.url }}" alt="Фото" class="profile-photo">
+            {% else %}
+                <p>Фото не загружено.</p>
+            {% endif %}
+            <div class="bio">
+                <h2>О себе</h2>
+                <p>{{ personal_page.bio }}</p>
+            </div>
+        </div>
+
+        <div class="resume">
+            {% if personal_page.resume %}
+                <a href="{{ personal_page.resume.url }}" target="_blank">Скачать резюме</a>
+            {% else %}
+                <p>Резюме не загружено.</p>
+            {% endif %}
+        </div>
+
+        <h2>Обновить данные</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Сохранить изменения</button>
+        </form>
+    </div>
+{% endblock %}
