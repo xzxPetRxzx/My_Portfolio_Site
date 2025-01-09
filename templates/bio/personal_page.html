@@ -1,25 +1,57 @@
 {% extends 'base.html' %}
 
-{% block title %}Личная страница - {{ personal_page.full_name }}{% endblock %}
+{% block title %}Личная страница - {{ person.full_name }}{% endblock %}
 
 {% block content %}
     <div class="container">
-        <h1>{{ personal_page.full_name }}</h1>
+        <h1>{{ person.full_name }}</h1>
         <div class="profile">
-            {% if personal_page.photo %}
-                <img src="{{ personal_page.photo.url }}" alt="Фото" class="profile-photo">
+            {% if person.photo %}
+                <img src="{{ person.photo.url }}" alt="Фото" class="profile-photo">
             {% else %}
                 <p>Фото не загружено.</p>
             {% endif %}
-            <div class="bio">
-                <h2>О себе</h2>
-                <p>{{ personal_page.bio }}</p>
+            <div class="contacts">
+                <h2>Контакты</h2>
+                {% if person.tel %}
+                <p>Телефон: {{ person.tel }}</p>
+                {% endif %}
+                {% if person.email %}
+                <p>Email: {{ person.email }}</p>
+                {% endif %}
+                {% if person.github_url %}
+                <p>Github: <a href="{{ person.github_url }}" target="_blank">{{ person.github_url }}</a></p>
+                {% endif %}
+                {% if person.another_link_methods %}
+                <p> {{ person.another_link_methods }}</p>
+                {% endif %}
             </div>
+            <div class="about_me">
+                <h2>О себе</h2>
+                <p>{{ person.about_me }}</p>
+            </div>
+            <div class="education_places">
+                <h2>Образование</h2>
+                {% for education in person.education_places %}
+                <div class ="education">
+                    {{ education.place }}
+                    Год окончания: {{ education.graduation_year }}
+                </div>
+                {% endfor %}
+                <p>{{ person.about_me }}</p>
+            </div>
+            <div class="job_places">
+                <h2>Места работы</h2>
+                <div class ="job">
+
+                </div>
+            </div>
+
         </div>
 
         <div class="resume">
-            {% if personal_page.resume %}
-                <a href="{{ personal_page.resume.url }}" target="_blank">Скачать резюме</a>
+            {% if person.resume %}
+                <a href="{{ person.resume.url }}" target="_blank">Скачать резюме</a>
             {% else %}
                 <p>Резюме не загружено.</p>
             {% endif %}

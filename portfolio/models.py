@@ -11,7 +11,7 @@ class Portfolio(models.Model):
     website_url = models.URLField(max_length=500, blank=True, null=True)  # Ссылка на сайт проекта
     image = models.ImageField(upload_to='portfolio_images/', blank=True, null=True)  # Изображение проекта
     video_url = models.URLField(max_length=500, blank=True, null=True)  # Ссылка на видео (например, демо)
-    slug = models.SlugField(unique=True, blank=True, null=True)  # Slug для создания красивых URL
+    slug = models.SlugField(unique=True, blank=True, null=True)  # Slug для создания  URL
 
     def save(self, *args, **kwargs):
         # Автоматическая генерация slug, если его нет
